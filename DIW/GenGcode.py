@@ -23,7 +23,7 @@ class GcodeGenerator:
                 self.df['起点 Z'] = round(self.df['起点 Z'] + self.layerz, 3)
                 self.df['端点 Z'] = round(self.df['端点 Z'] + self.layerz, 3)
             for i in range(0, self.df.shape[0]):
-                code += f"M103\nG1 Z{self.broken_wire_h}\n"
+                code += f"M103\nG91\nG1 Z{self.broken_wire_h}\nG90\n"
                 code += "G1 X" + str(self.df.loc[i, '起点 X']) + ' '
                 code += "Y" + str(self.df.loc[i, '起点 Y']) + ' '
                 code += "Z" + str(self.df.loc[i, '起点 Z']) + ' '
